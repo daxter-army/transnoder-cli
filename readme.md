@@ -1,12 +1,7 @@
-Normal Text
-
 <div align="center">
-  <b>Some Links:</b><br>
-  <a href="#">Link 1</a> |
-  <a href="#">Link 2</a> |
-  <a href="#">Link 3</a>
+  <h1>transnode</h1>
+  <h2>send files over internet without leaving cli</h2>
+  <a href="#"></a> |
+  <a href="#"></a>
   <br><br>
-  <img src="http://s.4cdn.org/image/title/105.gif">
 </div>
-
-Normal text
