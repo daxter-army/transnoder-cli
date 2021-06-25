@@ -88,7 +88,7 @@ where,
 ## Notice
 
 - Currently, it sends files globally, i.e all the receivers who are connected with the sender at a particular instance, are sent the file.
-- It do not checks whether, the receiver is present or not, it just sends the file.
+- It do not checks whether, the receiver is present or not, it just sends the file, but receiver should be there in order to receive the file.
 - We can also check for a particular file that, does it exists or not.
 
 ## License
