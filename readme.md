@@ -7,7 +7,7 @@ Made with the magic of Node.js and sockets.io, transnode is a command line inter
 ## Features
 - You can send any file, without going anywhere, right from your fav terminal
 - Do not store your files like others, it just redirects it to it's destination
-- Your file is sent in an encypted form, so no worries for this
+- Your file is sent in an encypted form, so no worries for this (coming soon)
 - Saves your time
 
 ## Technologies
