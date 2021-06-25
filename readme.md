@@ -1,7 +1,6 @@
-<div align="center">
-  <h1>transnode</h1>
-  <h2>send files over internet without leaving cli</h2>
-</div>
+# transnode
+
+## send files over internet without leaving cli
 
 ## General Info
 
