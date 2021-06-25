@@ -1,0 +1,12 @@
+{
+  "name": "transnoder-client",
+  "version": "1.0.0",
+  "description": "client application for the transnoder - send files over the internet",
+  "main": "client.js",
+  "author": "Mehul Singh Teya",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "socket.io-client": "^4.1.2"
+  }
+}

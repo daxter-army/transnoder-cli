@@ -1,0 +1,132 @@
+"use strict";
+
+// importing necessary client-side files
+const io = require("socket.io-client");
+//? WRITE SERVER ADDRESS HERE
+const socket = io("http://127.0.0.1:3000");
+const path = require("path");
+const chalk = require("chalk");
+const fs = require("fs");
+var dataChunks = [];
+
+// getting cmd-line args
+const username = process.argv[2];
+
+// emitting the "hello" event on first contact with server
+socket.emit("hello", username);
+
+// for receiving files
+socket.on("data-chunk-rec", (chunk) => {
+  dataChunks.push(chunk);
+  console.log(chalk.blue("Receiving file..."));
+});
+
+socket.on("stream-end-rec", (filename) => {
+  // concatanating the whole array into a single base64 string, omitting the commas(,)
+  const wholeFileString = dataChunks.join("");
+  console.log(
+    chalk.cyan("Writing ") +
+      chalk.cyan.bold(filename) +
+      chalk.cyan(" to local disk...")
+  );
+
+  // writing the file to the system
+  try {
+    // checking file existence
+    // if (fs.existsSync(filename)) {
+    // console.log(chalk.yellow(`File: ${filename} already exists!`));
+    // } else {
+    fs.writeFileSync(
+      filename,
+      wholeFileString,
+      { encoding: "base64" },
+      function (err) {
+        // if any error occurs
+        if (err) {
+          console.log(chalk.red("Unable to write file to system...try again!"));
+        }
+      }
+    );
+    // }
+  } catch (err) {
+    console.log(chalk.red("Something unexpected happened...Please try again!"));
+    console.log(chalk.red(`Error: ${err.message}`));
+  }
+
+  // everything is good!
+  console.log(chalk.green.bold("Success!"));
+
+  // formatting the dataChunks to clear for next file
+  dataChunks = [];
+
+  // waiting for user to exit if he/she wants to
+  console.log(
+    "\nPress any key to exit, if you have no more files to receive..."
+  );
+  process.stdin.setRawMode(true);
+  process.stdin.resume();
+  process.stdin.on("data", process.exit.bind(process, 0));
+});
+
+// for sending file
+function sendFile(filename) {
+  var readStream = fs.createReadStream(
+    path.resolve(__dirname, `./${filename}`),
+    {
+      encoding: "base64",
+    }
+  );
+
+  readStream.on("start", () => {
+    console.log("File Loading");
+  });
+
+  readStream.on("data", (chunk) => {
+    console.log(chalk.blue("Sending file..."));
+    socket.emit("data-chunk", chunk);
+  });
+
+  readStream.on("end", () => {
+    console.log(chalk.green("File sent successfully!"));
+    socket.emit("stream-end", filename);
+
+    console.log(chalk.white.bold("Exitting!"));
+    // exitting the process
+    setTimeout(() => {
+      process.exit();
+    }, 1500);
+  });
+}
+
+// DRIVER CODE
+// index 3 contains filename,
+// if it's not there that means you are a receiver
+if (process.argv[3] && process.argv.length === 4) {
+  // checking username to be alphanumeric only
+  const regEx = /^[0-9a-zA-Z]+$/;
+  if (process.argv[2].match(regEx) && process.argv[3].length <= 10) {
+    // checking sending file existence
+    if (fs.existsSync(process.argv[3])) {
+      sendFile(process.argv[3]);
+    } else {
+      console.log(
+        chalk.red(
+          "The desired file to be sent, doesn't exists...Try again with correct file name!"
+        )
+      );
+      process.exit();
+    }
+  } else {
+    console.log(
+      chalk.red(
+        "Invalid arguments: Username should be alpha-numeric chars with length <= 10 chars!"
+      )
+    );
+    process.exit();
+  }
+} else if (process.argv.length >= 4) {
+  console.log(chalk.red("Invalid arguments"));
+  process.exit();
+} else {
+  console.log(chalk.yellow("Waiting for sender to send data..."));
+}
