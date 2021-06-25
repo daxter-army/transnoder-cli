@@ -3,7 +3,9 @@
 // importing necessary client-side files
 const io = require("socket.io-client");
 //? WRITE SERVER ADDRESS HERE
-const socket = io("http://127.0.0.1:3000");
+// const socket = io("http://localhost:3000");
+const url = "https://dax-transporter.herokuapp.com";
+const socket = io(url);
 const path = require("path");
 const chalk = require("chalk");
 const fs = require("fs");
@@ -13,6 +15,7 @@ var liveConnection = false;
 
 // getting cmd-line args
 const username = process.argv[2];
+console.log(chalk.yellow(`Connecting to => ${url}`));
 
 // when client gets connected with server
 socket.on("connect", () => {
