@@ -59,7 +59,7 @@ node client.js <user_name>
 - Client as receiver, **should be run after receiver script, when terminal is saying this:**
 
 ```js
-Waiting for sender to send data...
+Ready to receive data...
 ```
 
 - Go to Client directory and hit, in a different terminal
