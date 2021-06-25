@@ -84,3 +84,5 @@ where,
 - Currently, I have faced no issues while using this, but if you notice one, feel free to raise an issue.
 
 ## License
+
+MIT License
