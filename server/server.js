@@ -22,13 +22,13 @@ const users = {};
 // this will recognize our clients
 io.on("connection", (socket) => {
   // alert when any new client connects
-  console.log("New websocket connection!");
+  // console.log("New websocket connection!");
 
   // listening to "hello" event, emitted by client
   socket.on("hello", (username) => {
     users[socket.id] = username;
     // console.log(socket.id);
-    console.log(users);
+    // console.log(users);
     // console.log(`Total users: ${users.length}`);
     socket.broadcast.emit("announce", `${username} joined!`);
   });

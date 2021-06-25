@@ -8,12 +8,43 @@ const path = require("path");
 const chalk = require("chalk");
 const fs = require("fs");
 var dataChunks = [];
+var reconnectAttempts = 0;
+var liveConnection = false;
 
 // getting cmd-line args
 const username = process.argv[2];
 
+// when client gets connected with server
+socket.on("connect", () => {
+  liveConnection = true;
+
+  if (process.argv.length < 4) {
+    console.log(chalk.blue("Connected with server"));
+    console.log(chalk.cyan("Ready to receive data..."));
+  } else {
+    sendFile(process.argv[3]);
+  }
+});
+
 // emitting the "hello" event on first contact with server
 socket.emit("hello", username);
+
+// checking if we established a connection with server or not
+socket.io.on("error", () => {
+  liveConnection = false;
+  if (reconnectAttempts > 10) {
+    console.log(chalk.red("Server is unreachable...please try again!"));
+    process.exit();
+  }
+  console.log(chalk.yellow("Connection failed...trying to reconnect!"));
+  reconnectAttempts++;
+});
+
+// when first not connected, but then reconnected
+socket.io.on("reconnect", () => {
+  liveConnection = true;
+  console.log(chalk.blue("Re-connected with server"));
+});
 
 // for receiving files
 socket.on("data-chunk-rec", (chunk) => {
@@ -21,6 +52,7 @@ socket.on("data-chunk-rec", (chunk) => {
   console.log(chalk.blue("Receiving file..."));
 });
 
+// to save file on local disk
 socket.on("stream-end-rec", (filename) => {
   // concatanating the whole array into a single base64 string, omitting the commas(,)
   const wholeFileString = dataChunks.join("");
@@ -70,32 +102,35 @@ socket.on("stream-end-rec", (filename) => {
 
 // for sending file
 function sendFile(filename) {
-  var readStream = fs.createReadStream(
-    path.resolve(__dirname, `./${filename}`),
-    {
-      encoding: "base64",
-    }
-  );
+  // only when we have live connection
+  if (liveConnection) {
+    var readStream = fs.createReadStream(
+      path.resolve(__dirname, `./${filename}`),
+      {
+        encoding: "base64",
+      }
+    );
 
-  readStream.on("start", () => {
-    console.log("File Loading");
-  });
+    readStream.on("start", () => {
+      console.log("File Loading");
+    });
 
-  readStream.on("data", (chunk) => {
-    console.log(chalk.blue("Sending file..."));
-    socket.emit("data-chunk", chunk);
-  });
+    readStream.on("data", (chunk) => {
+      console.log(chalk.blue("Sending file..."));
+      socket.emit("data-chunk", chunk);
+    });
 
-  readStream.on("end", () => {
-    console.log(chalk.green("File sent successfully!"));
-    socket.emit("stream-end", filename);
+    readStream.on("end", () => {
+      console.log(chalk.green("File sent successfully!"));
+      socket.emit("stream-end", filename);
 
-    console.log(chalk.white.bold("Exitting!"));
-    // exitting the process
-    setTimeout(() => {
-      process.exit();
-    }, 1500);
-  });
+      console.log(chalk.white.bold("Exitting!"));
+      // exitting the process
+      setTimeout(() => {
+        process.exit();
+      }, 1500);
+    });
+  }
 }
 
 // DRIVER CODE
@@ -127,6 +162,4 @@ if (process.argv[3] && process.argv.length === 4) {
 } else if (process.argv.length >= 4) {
   console.log(chalk.red("Invalid arguments"));
   process.exit();
-} else {
-  console.log(chalk.yellow("Waiting for sender to send data..."));
 }

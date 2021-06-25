@@ -7,6 +7,13 @@
 
 Made with the magic of Node.js and sockets.io, transnode is a command line interface tool which enables you to send any kind of file directly, from cli without using any third party software.
 
+## Features
+
+- You can send any file, without going anywhere, right from your fav terminal
+- Do not store your files like others, it just redirects it to it's destination
+- Your file is sent in an encypted form, so no worries for this
+- Saves your time
+
 ## Technologies
 
 The Project is created with:
@@ -79,9 +86,11 @@ where,
 
 - You are open to give suggestions, or to contribute to this project, feel free to create pull requests 😊.
 
-## Issues
+## Notice
 
-- Currently, I have faced no issues while using this, but if you notice one, feel free to raise an issue.
+- Currently, it sends files globally, i.e all the receivers who are connected with the sender at a particular instance, are sent the file.
+- It do not checks whether, the receiver is present or not, it just sends the file.
+- We can also check for a particular file that, does it exists or not.
 
 ## License
 
