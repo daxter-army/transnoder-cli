@@ -73,7 +73,7 @@ where,
 ## Things in motion
 
 - It supports sending any kind of file, whether audio, video, text, any file.
-- Messaging can also be implemented, with this and is currently in development.
+- Messaging can also be implemented with this, and is currently in development.
 
 ## Suggestions/Collaboration
 
