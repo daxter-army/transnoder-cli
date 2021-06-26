@@ -1,4 +1,4 @@
-# transnoder
+# Transnoder
 
 ## send files over internet without leaving cli
 
