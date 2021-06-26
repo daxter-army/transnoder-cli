@@ -14,7 +14,7 @@ Made with the magic of Node.js and sockets.io, transnoder is a command line inte
 
 - You can send any file, without going anywhere, right from your fav terminal
 - Do not store your files like others, it just redirects it to it's destination
-- Your file is sent in an encypted form, so no worries for this (coming soon)
+- Data is sent using base64 encoding
 - Saves your time
 
 ## Technologies
@@ -86,6 +86,7 @@ where,
 
 - It supports sending any kind of file, whether audio, video, text, any file.
 - Messaging can also be implemented with this, and is currently in development.
+- The data is sent in chunks, in base64 encoded string, which can also be encypted and then send, by using any cipher algo of your choice.
 
 ## Notice
 
