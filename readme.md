@@ -8,7 +8,7 @@ Made with the magic of Node.js and sockets.io, transnoder is a command line inte
 
 ## Glimpse
 
-<img src="./demo-gif.gif" alt="demo-gif"/>
+<img src="./screenshots/demo-gif.gif" alt="demo-gif"/>
 
 ## Features
 
