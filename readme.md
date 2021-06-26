@@ -1,10 +1,10 @@
-# transnode
+# transnoder
 
 ## send files over internet without leaving cli
 
 ## General Info
 
-Made with the magic of Node.js and sockets.io, transnode is a command line interface tool which enables you to send any kind of file directly, from cli without using any third party software.
+Made with the magic of Node.js and sockets.io, transnoder is a command line interface tool which enables you to send any kind of file directly, from cli without using any third party software.
 
 ## Glimpse
 
