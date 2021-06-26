@@ -1,14 +1,16 @@
 "use strict";
 
 // importing necessary client-side files
+const fs = require("fs");
+const path = require("path");
+const chalk = require("chalk");
 const io = require("socket.io-client");
-//? WRITE SERVER ADDRESS HERE
+// WRITE SERVER ADDRESS HERE
 // const socket = io("http://localhost:3000");
 const url = "https://dax-transnoder.herokuapp.com";
 const socket = io(url);
-const path = require("path");
-const chalk = require("chalk");
-const fs = require("fs");
+
+// utility variables
 var dataChunks = [];
 var reconnectAttempts = 0;
 var liveConnection = false;
@@ -49,7 +51,7 @@ socket.io.on("reconnect", () => {
   console.log(chalk.blue("Re-connected with server"));
 });
 
-// for receiving files
+//* FOR RECEIVING FILES
 socket.on("data-chunk-rec", (chunk) => {
   dataChunks.push(chunk);
   console.log(chalk.blue("Receiving file..."));
@@ -103,7 +105,7 @@ socket.on("stream-end-rec", (filename) => {
   process.stdin.on("data", process.exit.bind(process, 0));
 });
 
-// for sending file
+//* FOR SENDING FILES
 function sendFile(filename) {
   // only when we have live connection
   if (liveConnection) {
