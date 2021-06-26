@@ -8,7 +8,7 @@ Made with the magic of Node.js and sockets.io, transnode is a command line inter
 
 ## Glimpse
 
-<img style="border-radius: 5px;" src="./demo-gif.gif" alt="demo-gif"/>
+<img src="./demo-gif.gif" alt="demo-gif"/>
 
 ## Features
 
