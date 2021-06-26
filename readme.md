@@ -27,7 +27,9 @@ The Project is created with:
 
 ## Setup
 
-To run this project, **Nodejs should be installed on your system, if not you can download it from [here](https://nodejs.org/en/)**
+- **NOTE -** to run on localhost, go to client/client.js and change the value of url to "http://localhost:<port_number>"
+
+* To run this project, **Nodejs should be installed on your system, if not you can download it from [here](https://nodejs.org/en/)**
 
 ## Run
 
