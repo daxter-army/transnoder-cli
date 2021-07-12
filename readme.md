@@ -25,7 +25,7 @@ The Project is created with:
 - Sockets.io
 - Express
 
-## Setup
+## How to use
 
 - **NOTE -** to run on localhost, go to _client/client.js_ and change the value of url to **http://localhost:<port_number>**
 
