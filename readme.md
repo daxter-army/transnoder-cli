@@ -2,12 +2,12 @@
 Made with the magic of Node.js and sockets.io, transnoder is a command line interface tool which enables you to send any kind of file directly from cli.
 
 ## ✨ Screenshot
-<p align="center">
+<!-- <p align="center">
   <img src="./screenshots/demo-gif.gif" alt="demo-gif" style="width: 100%;"/>
-</p>
+</p> -->
 
 <video width="400" controls>
-  <source src="https://raw.githubusercontent.com/daxter-army/transnoder-cli/main/screenshots/demo-video.mp4" type="video/mp4">
+  <source src="./screenshots/demo-video.mp4" type="video/mp4">
 </video>
 
   
