@@ -6,7 +6,10 @@ Made with the magic of Node.js and sockets.io, transnoder is a command line inte
   <img src="./screenshots/demo-gif.gif" alt="demo-gif" style="width: 100%;"/>
 </p>
 
-https://raw.githubusercontent.com/daxter-army/transnoder-cli/main/screenshots/demo-video.mp4
+<video width="400" controls>
+  <source src="https://raw.githubusercontent.com/daxter-army/transnoder-cli/main/screenshots/demo-video.mp4" type="video/mp4">
+</video>
+
   
 ## ⭐ Features
 - You can send any file, without going anywhere, right from your fav terminal
