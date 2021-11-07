@@ -10,6 +10,11 @@ Made with the magic of Node.js and sockets.io, transnoder is a command line inte
   <source src="./screenshots/demo-video.mp4" type="video/mp4">
 </video>
 
+steps:
+- title: What is GitHub?
+  description: After watching this video, close the first issue in your repository.
+  video: https://youtube.com/embed/w3jLJU7DT5E
+
   
 ## ⭐ Features
 - You can send any file, without going anywhere, right from your fav terminal
