@@ -3,7 +3,7 @@ Made with the magic of Node.js and sockets.io, transnoder is a command line inte
 
 ## ✨ Screenshot
 <p align="center">
-  <img src="./screenshots/demo-gif.gif" alt="demo-gif"/>
+  <img src="./screenshots/demo-gif.gif" alt="demo-gif" style="width: 100%;"/>
 </p>
   
 ## ⭐ Features
